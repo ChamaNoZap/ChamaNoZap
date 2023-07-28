@@ -10,24 +10,29 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <header>
+    <nav class="header flex items-center border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 px-16">
+        <a href="#" class="flex">
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Zappfy</span>
+        </a>
+    </nav>
+      
 
-    </header>
-
-    <main>
-        <div class="flex justify-center items-center flex-col gap-10">
-            <h1 class="flex px-10 text-center text-3xl">Digite o número de telefone com DDD.</h1>
-            <form class="grid grid-2 md:grid-cols-2 gap-4 text-2xl">                
-                <input type="text" id="phone" placeholder="Ex: +551234567890" class="bg-neutral-100 appearance-none border-2 border-blue-500 rounded w-full py-2 px-4 text-neutral-900 leading-tight focus:outline-none focus:bg-white focus:border-blue-900">
-                <button onclick="redirecionarParaWhatsApp()" type="submit" class="bg-blue-500 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">Enviar</button>
-            </form>
+    <main class="flex justify-center items-center flex-col gap-8 bg-gray-900">
+        
+        <div class="flex flex-col">
+            <h1 class="flex px-10 text-center text-4xl font-black text-gray-300">Digite o número de telefone com DDD.</h1>
         </div>
+
+        <form class="grid grid-2 md:grid-cols-2 gap-4 text-2xl">                
+            <input type="text" id="phone" placeholder="Ex: +551234567890" class="bg-neutral-100 appearance-none border-2 border-blue-500 rounded w-full py-2 px-4 text-neutral-900 leading-tight focus:outline-none focus:bg-white focus:border-blue-900">
+            <button onclick="redirecionarParaWhatsApp()" type="submit" class="bg-blue-500 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">Enviar</button>
+        </form>
+
     </main>
 
-    <footer>
-        
-    </footer>
-  
+    <footer class="flex justify-center items-center bg-gray-800">
+        <h6 class="flex px-10 text-center text-sm text-gray-300 font-semibold">App desenvolvido para facilitar o usuário a enviar mensagem via WhatsApp sem precisar ADD um novo número na lista de contatos. </h6>        
+    </footer>  
     
     <script src="/js/script.js"></script>
   </body>
