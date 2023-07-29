@@ -13,13 +13,16 @@
     <link rel="icon" href="/img/zappfy.svg">
 </head>
 <body class="bg-gray-900">
-    <nav class="bg-white border-gray-200 dark:bg-gray-800">
-        <div class="flex flex-wrap justify-beetwen items-center mx-auto max-w-screen-xl p-8">
+    <nav class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div class="flex flex-wrap justify-beetwen items-center mx-auto max-w-screen-xl p-1">
             <img src="/img/zappfy.svg" class="h-8 mr-3" alt="Flowbite Logo" />
             <h1 class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Zappfy</h1>
+            
             <div class="flex items-center">
             </div>
+            
         </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />        
     </nav>
     <main class="flex justify-center items-center flex-col gap-8 bg-gray-900 ">
          
@@ -27,9 +30,10 @@
             <h1 class="flex px-10 text-center text-4xl font-black bg-gradient-to-r from-gray-200 via-gray-400 to-gray-600 bg-clip-text text-transparent py-3">Digite o número de telefone com DDD.</h1>
         </div>
         <form class="grid grid-2 md:grid-cols-2 gap-4 text-2xl">                
-            <input type="text" id="phone" placeholder="Ex: +551234567890" class="bg-neutral-100 appearance-none border-2 border-blue-500 rounded w-full py-2 px-4 text-neutral-900 leading-tight focus:outline-none focus:bg-white focus:border-blue-900">
+            <input formControlName="sGPTypeDeliveryId" type="number" id="phone" placeholder="Ex: +551234567890" class="bg-neutral-100 appearance-none border-2 border-blue-500 rounded w-full py-2 px-4 text-neutral-900 leading-tight focus:outline-none focus:bg-white focus:border-blue-900" pattern="[0-9]+$">
             <button onclick="redirecionarParaWhatsApp()" type="submit" class="bg-blue-500 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">Enviar</button>
         </form>
+
     </main>
 
     <footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
