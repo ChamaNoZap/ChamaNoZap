@@ -42,13 +42,8 @@ themeToggleBtn.addEventListener('click', function() {
 function redirecionarParaWhatsApp() {
   const telNum = document.getElementById("phone").value;
 
-  if (telNum.trim() === "") {
-    exibirPopup();
-    return;
+  windows.location.href = 'https://api.whatsapp.com/send?phone=${telNum}'
   }
-
-  const whatsappURL = `https://wa.me/{encodeURIComponent(telNum)}`;
-  window.open(whatsappURL, "_blank");
 }
 
 // Receber seletor do id phone
