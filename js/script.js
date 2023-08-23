@@ -47,7 +47,7 @@ function redirecionarParaWhatsApp() {
     return;
   }
 
-  const whatsappURL = `https://api.whatsapp.com/send?phone=${encodeURIComponent(telNum)}`;
+  const whatsappURL = `https://wa.me/{encodeURIComponent(telNum)}`;
   window.open(whatsappURL, "_blank");
 }
 
