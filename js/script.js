@@ -40,18 +40,28 @@ themeToggleBtn.addEventListener('click', function() {
 });
 
 function redirecionarParaWhatsApp() {
-  const telNum = document.getElementById("phone").value;
-
-  windows.location.href = 'https://api.whatsapp.com/send?phone=${telNum}'
-  }
+    var phoneNumber = document.getElementById("phone").value;
+    if (phoneNumber) {
+        var cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
+        var countryCode = "55"; // Substitua pelo código de área do país, se necessário
+        var url = "https://wa.me/" + countryCode + cleanedPhoneNumber;
+        window.open(url, "_blank");
+    } else {
+        alert("Por favor, digite um número de telefone válido.");
+    }
 }
 
-// Receber seletor do id phone
+function handleKeyPress(event) {
+    if (event.key === "Enter") {
+        redirecionarParaWhatsApp();
+    }
+}
+
+
 var phone = document.getElementById("phone");
 
 phone.addEventListener("input", () => {
 
-    // Remover os caracteres não numéricos usando a expressão regular /\D/g e limitar a 11 dígitos.
     var limparValor = phone.value.replace(/\D/g, "").substring(0,11);
 
     // Dividir a string em um array de caracteres individuais.
