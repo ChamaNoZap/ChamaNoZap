@@ -39,12 +39,11 @@ themeToggleBtn.addEventListener('click', function() {
     
 });
 
-function redirecionarParaWhatsApp() {
+function openWhatsAppWeb() {
     var phoneNumber = document.getElementById("phone").value;
     if (phoneNumber) {
         var cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
-        var countryCode = "55"; // Substitua pelo código de área do país, se necessário
-        var url = "https://wa.me/" + countryCode + cleanedPhoneNumber;
+        var url = "https://web.whatsapp.com/send?phone=" + cleanedPhoneNumber;
         window.open(url, "_blank");
     } else {
         alert("Por favor, digite um número de telefone válido.");
@@ -53,7 +52,7 @@ function redirecionarParaWhatsApp() {
 
 function handleKeyPress(event) {
     if (event.key === "Enter") {
-        redirecionarParaWhatsApp();
+        openWhatsAppWeb();
     }
 }
 
