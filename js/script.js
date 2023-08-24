@@ -43,7 +43,7 @@ function openWhatsAppWeb() {
     var phoneNumber = document.getElementById("phone").value;
     if (phoneNumber) {
         var cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
-        var url = "https://web.whatsapp.com/send?phone=" + cleanedPhoneNumber;
+        var url = "https://wa.me/" + cleanedPhoneNumber;
         window.open(url, "_blank");
     } else {
         document.getElementById("error-message").classList.remove("hidden");
