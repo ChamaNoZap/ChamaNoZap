@@ -46,7 +46,8 @@ function openWhatsAppWeb() {
         var url = "https://web.whatsapp.com/send?phone=" + cleanedPhoneNumber;
         window.open(url, "_blank");
     } else {
-        alert("Por favor, digite um número de telefone válido.");
+        document.getElementById("error-message").classList.remove("hidden");
+        document.getElementById("phone").classList.add("ring-red-900")
     }
 }
 
