@@ -40,7 +40,7 @@ themeToggleBtn.addEventListener('click', function() {
 });
 
 function openWhatsAppWeb() {
-    var phoneNumber = document.getElementById("phone").value;
+    var phoneNumber = document.getElementById("phone1","phone2").value;
     if (phoneNumber) {
         var cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
         
@@ -55,6 +55,8 @@ function openWhatsAppWeb() {
         }
     } else {
         document.getElementById("error-message").classList.remove("hidden");
+        document.getElementById("phone1").classList.add("hidden")
+        document.getElementById("phone2").classList.remove("hidden")
     }
 }
 
@@ -64,7 +66,7 @@ function handleKeyPress(event) {
     }
 }
 
-var phone = document.getElementById("phone");
+var phone = document.getElementById("phone2", "phone2");
 
 phone.addEventListener("input", () => {
 
