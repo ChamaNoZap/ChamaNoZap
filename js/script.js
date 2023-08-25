@@ -44,13 +44,13 @@ function openWhatsAppWeb() {
     if (phoneNumber) {
         var cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
         
-        var isMobile = window.innerWidth < 640; // Defina o limite desejado para detecção de dispositivo móvel
+        var isMobile = window.innerWidth < 640;
         
         if (isMobile) {
-            var mobileUrl = "https://wa.me/" + cleanedPhoneNumber; // URL para dispositivos móveis
+            var mobileUrl = "https://wa.me/" + cleanedPhoneNumber;
             window.open(mobileUrl, "_blank");
         } else {
-            var desktopUrl = "https://web.whatsapp.com/send?phone=" + cleanedPhoneNumber; // URL para desktops
+            var desktopUrl = "https://web.whatsapp.com/send?phone=" + cleanedPhoneNumber;
             window.open(desktopUrl, "_blank");
         }
     } else {
@@ -69,38 +69,18 @@ var phone = document.getElementById("phone");
 phone.addEventListener("input", () => {
 
     var limparValor = phone.value.replace(/\D/g, "").substring(0,11);
-
-    // Dividir a string em um array de caracteres individuais.
     var numerosArray = limparValor.split("");
-
-    // Criar a variável para receber o número formatado
     var numeroFormatado = "";
-    
-    // Acessa o IF quando a quantidade de números é maior do que zero
     if(numerosArray.length > 0){
-        // Formatar o DD e concatenar o valor
-        // slice - extraie uma parte do array
-        // join - unir os elementos do array em uma única string
         numeroFormatado += `(${numerosArray.slice(0,2).join("")})`;
     }
-
-    // Acessa o IF quando a quantidade de números é maior do que dois
     if(numerosArray.length > 2){
-        // Formatar o número do telefone e concatenar o valor
-        // slice - extraie uma parte do array
-        // join - unir os elementos do array em uma única string
         numeroFormatado += ` ${numerosArray.slice(2,7).join("")}`;
     }
-
-    // Acessa o IF quando a quantidade de números é maior do que sete
     if(numerosArray.length > 7){
-        // Formatar o número do telefone e concatenar o valor
-        // slice - extraie uma parte do array
-        // join - unir os elementos do array em uma única string
         numeroFormatado += `-${numerosArray.slice(7,11).join("")}`;
     }
 
-    // Enviar para o campo o número formatado
     phone.value = numeroFormatado;
 });
 
