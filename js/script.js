@@ -43,11 +43,18 @@ function openWhatsAppWeb() {
     var phoneNumber = document.getElementById("phone").value;
     if (phoneNumber) {
         var cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
-        var url = "https://wa.me/" + cleanedPhoneNumber;
-        window.open(url, "_blank");
+        
+        var isMobile = window.innerWidth < 640; // Defina o limite desejado para detecção de dispositivo móvel
+        
+        if (isMobile) {
+            var mobileUrl = "https://wa.me/" + cleanedPhoneNumber; // URL para dispositivos móveis
+            window.open(mobileUrl, "_blank");
+        } else {
+            var desktopUrl = "https://web.whatsapp.com/send?phone=" + cleanedPhoneNumber; // URL para desktops
+            window.open(desktopUrl, "_blank");
+        }
     } else {
         document.getElementById("error-message").classList.remove("hidden");
-        document.getElementById("phone").classList.add("ring-red-900")
     }
 }
 
@@ -56,7 +63,6 @@ function handleKeyPress(event) {
         openWhatsAppWeb();
     }
 }
-
 
 var phone = document.getElementById("phone");
 
