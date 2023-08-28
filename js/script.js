@@ -39,6 +39,15 @@ themeToggleBtn.addEventListener('click', function() {
     
 });
 
+setTimeout(function() {
+    hideLoadingScreen();
+}, 3000);
+
+function hideLoadingScreen() {
+    var loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.style.display = 'none';
+}
+
 function openWhatsAppWeb() {
     var phoneNumber1 = document.getElementById("phone1").value;
     var phoneNumber2 = document.getElementById("phone2").value;
