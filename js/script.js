@@ -108,21 +108,81 @@ phone.addEventListener("input", () => {
     phone.value = numeroFormatado;
 });
 
-function saveContact(phoneNumber) {
-    var contactName = prompt("Por favor, insira um nome para este contato:");
-    if (contactName !== null && contactName.trim() !== "") {
-        var existingContacts = JSON.parse(localStorage.getItem("contacts")) || [];
+// recentNumbers.js
 
-        existingContacts.push({ phoneNumber, contactName });
+// Get references to the input and button elements
+const phoneInput = document.getElementById('phone1');
+const sendButton = document.querySelector('.send-button');
 
-        localStorage.setItem("contacts", JSON.stringify(existingContacts));
+// Get the recent numbers list container
+const recentNumbersList = document.getElementById('recent-numbers-list');
 
-        alert("Contato salvo com sucesso!");
+// Event listener for the send button
+sendButton.addEventListener('click', function () {
+  const phoneNumber = phoneInput.value.trim();
+  
+  if (phoneNumber) {
+    // Add the number to the recent numbers list
+    addToRecentNumbersList(phoneNumber);
+    
+    // Clear the input field
+    phoneInput.value = '';
+  }
+});
+
+// recentNumbers.js
+
+// Load recent numbers from localStorage when the page loads
+window.addEventListener('load', function () {
+    const savedNumbers = JSON.parse(localStorage.getItem('recentNumbers')) || [];
+    savedNumbers.forEach(number => {
+      addToRecentNumbersList(number);
+    });
+  });
+  
+  // Event listener for the send button
+  sendButton.addEventListener('click', function () {
+    const phoneNumber = phoneInput.value.trim();
+    
+    if (phoneNumber) {
+      addToRecentNumbersList(phoneNumber);
+      
+      // Save the updated list to localStorage
+      saveRecentNumbers();
+      
+      phoneInput.value = '';
     }
-}
+  });
+  
+  // Function to add a number to the recent numbers list
+  function addToRecentNumbersList(number) {
+    const listItem = document.createElement('li');
+    listItem.textContent = number;
+    recentNumbersList.prepend(listItem);
+  }
+  
+  // Function to save the recent numbers to localStorage
+  function saveRecentNumbers() {
+    const listItems = Array.from(recentNumbersList.querySelectorAll('li'));
+    const recentNumbers = listItems.map(item => item.textContent);
+    localStorage.setItem('recentNumbers', JSON.stringify(recentNumbers));
+  }
+  
 
-var phone1 = document.getElementById("phone1");
-var phone2 = document.getElementById("phone2");
+// recentNumbers.js
 
-phone1.addEventListener("keyup", handleKeyPress);
-phone2.addEventListener("keyup", handleKeyPress);
+// Load recent numbers from localStorage and display them on page load
+window.addEventListener('load', function () {
+    const savedNumbers = JSON.parse(localStorage.getItem('recentNumbers')) || [];
+    
+    // Display initial saved numbers
+    const initialNumbersList = document.getElementById('initial-recent-numbers');
+    savedNumbers.forEach(number => {
+      const listItem = document.createElement('li');
+      listItem.textContent = number;
+      initialNumbersList.appendChild(listItem);
+    });
+  
+    // ... rest of the code
+});
+  
