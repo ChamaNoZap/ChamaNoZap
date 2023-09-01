@@ -41,7 +41,7 @@ themeToggleBtn.addEventListener('click', function() {
 
 setTimeout(function() {
     hideLoadingScreen();
-}, 100);
+}, 2000);
 
 function hideLoadingScreen() {
     var loadingScreen = document.getElementById('loading-screen');
