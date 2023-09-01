@@ -52,16 +52,20 @@
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Digite o número de telefone com DDD.</h1>
             <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">App desenvolvido para facilitar o usuário a enviar mensagem via WhatsApp sem precisar ADD um novo número na lista de contatos.</p>
-            <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4 lg:py-16 py-8">
-                <input maxlength="15" type="text" id="phone1" placeholder="Ex: (10) 98745-4321" class="error1 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg bg-gray-200 hover:bg-gray-200 focus:ring-red-900 focus:ring-4 focus:ring-gray-900 dark:focus:ring-gray-200" onkeyup="handleKeyPress(event)">
-                <input maxlength="15" type="text" id="phone2" placeholder="Ex: (10) 98745-4321" class="error2 flex flex-row gap-3 justify-center items-center py-3 px-5 text-base font-medium text-center text-grey rounded-lg bg-grey-700 hover:bg-grey-800 focus:ring-4 fored:ring-red-300 dark:focus:ring-red-300 hidden" onkeyup="handleKeyPress(event)">
-                <button onclick="openWhatsAppWeb()" type="button" class="send-button flex flex-row gap-3 justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-                    <h1>Enviar</h1>
-                    <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                    </svg>
-                  </button>
-            </div>
+
+            <form class="py-8 px-4 h-4/5 w-full bg-white dark:bg-gray-900 py-8 text-center :py-16">
+                <div class="grid gap-6 mx-auto max-w-xl text-center lg:py-16 mb-6 md:grid-cols-3">
+                    <input maxlength="15" type="text" id="phone" placeholder="Ex: (10) 98745-4321" class="error1 inline-flex justify-center items-center text-center bg-gray-50 col-span-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onkeyup="handleKeyPress(event)">
+
+        
+                    <button onclick="openWhatsAppWeb()" type="button" class="send-button flex flex-row gap-2 justify-center items-center text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <h1>Enviar</h1>
+                        <svg class="w-6 h-6 text-white dark:text-white text-base" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 25 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </button>
+                </div>
+            </form>
 
             <div id="error-message" class="hidden py-4 mx-auto max-w-screen-xl text-center lg:py-4 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
                 <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">

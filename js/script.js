@@ -41,7 +41,7 @@ themeToggleBtn.addEventListener('click', function() {
 
 setTimeout(function() {
     hideLoadingScreen();
-}, 3000);
+}, 100);
 
 function hideLoadingScreen() {
     var loadingScreen = document.getElementById('loading-screen');
@@ -49,10 +49,7 @@ function hideLoadingScreen() {
 }
 
 function openWhatsAppWeb() {
-    var phoneNumber1 = document.getElementById("phone1").value;
-    var phoneNumber2 = document.getElementById("phone2").value;
-
-    var phoneNumber = phoneNumber1.trim() || phoneNumber2.trim();
+    var phoneNumber = document.getElementById("phone").value;
 
     if (phoneNumber) {
         var cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
@@ -71,8 +68,6 @@ function openWhatsAppWeb() {
         saveContact(formattedPhoneNumber);
     } else {
         document.getElementById("error-message").classList.remove("hidden");
-        document.getElementById("phone1").classList.add("hidden");
-        document.getElementById("phone2").classList.remove("hidden");
     }
 }
 
@@ -99,7 +94,7 @@ function formatPhoneNumber(phoneNumber) {
     return formattedNumber;
 }
 
-var phone = document.getElementById("phone1", "phone2");
+var phone = document.getElementById("phone");
 
 phone.addEventListener("input", () => {
     var limparValor = phone.value.replace(/\D/g, "").substring(0, 11);
@@ -107,82 +102,3 @@ phone.addEventListener("input", () => {
 
     phone.value = numeroFormatado;
 });
-
-// recentNumbers.js
-
-// Get references to the input and button elements
-const phoneInput = document.getElementById('phone1');
-const sendButton = document.querySelector('.send-button');
-
-// Get the recent numbers list container
-const recentNumbersList = document.getElementById('recent-numbers-list');
-
-// Event listener for the send button
-sendButton.addEventListener('click', function () {
-  const phoneNumber = phoneInput.value.trim();
-  
-  if (phoneNumber) {
-    // Add the number to the recent numbers list
-    addToRecentNumbersList(phoneNumber);
-    
-    // Clear the input field
-    phoneInput.value = '';
-  }
-});
-
-// recentNumbers.js
-
-// Load recent numbers from localStorage when the page loads
-window.addEventListener('load', function () {
-    const savedNumbers = JSON.parse(localStorage.getItem('recentNumbers')) || [];
-    savedNumbers.forEach(number => {
-      addToRecentNumbersList(number);
-    });
-  });
-  
-  // Event listener for the send button
-  sendButton.addEventListener('click', function () {
-    const phoneNumber = phoneInput.value.trim();
-    
-    if (phoneNumber) {
-      addToRecentNumbersList(phoneNumber);
-      
-      // Save the updated list to localStorage
-      saveRecentNumbers();
-      
-      phoneInput.value = '';
-    }
-  });
-  
-  // Function to add a number to the recent numbers list
-  function addToRecentNumbersList(number) {
-    const listItem = document.createElement('li');
-    listItem.textContent = number;
-    recentNumbersList.prepend(listItem);
-  }
-  
-  // Function to save the recent numbers to localStorage
-  function saveRecentNumbers() {
-    const listItems = Array.from(recentNumbersList.querySelectorAll('li'));
-    const recentNumbers = listItems.map(item => item.textContent);
-    localStorage.setItem('recentNumbers', JSON.stringify(recentNumbers));
-  }
-  
-
-// recentNumbers.js
-
-// Load recent numbers from localStorage and display them on page load
-window.addEventListener('load', function () {
-    const savedNumbers = JSON.parse(localStorage.getItem('recentNumbers')) || [];
-    
-    // Display initial saved numbers
-    const initialNumbersList = document.getElementById('initial-recent-numbers');
-    savedNumbers.forEach(number => {
-      const listItem = document.createElement('li');
-      listItem.textContent = number;
-      initialNumbersList.appendChild(listItem);
-    });
-  
-    // ... rest of the code
-});
-  
