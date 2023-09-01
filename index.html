@@ -50,14 +50,19 @@
   
     <section class="h-4/5 w-full bg-white dark:bg-gray-900 py-8 lg:py-8">
         <div class="py-8 px-4 mx-auto mx-auto max-w-xl text-left lg:py-8">
+
+            <div class="text-left py-8 px-4 h-4/5 w-full bg-white dark:bg-gray-900 py-8 py-16">
+                <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl dark:text-white">Digite o número de <span class="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">telefone com DDD.</span></h1>
+                <p class="text-md font-normal text-gray-500 lg:text-md dark:text-gray-400">App desenvolvido para facilitar o usuário a enviar mensagem via WhatsApp sem precisar ADD um novo número na lista de contatos.</p>    
+            </div>
             
-            <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Digite o número de <span class="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">telefone com DDD.</span></h1>
-            <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">App desenvolvido para facilitar o usuário a enviar mensagem via WhatsApp sem precisar ADD um novo número na lista de contatos.</p>
 
             <form class="py-8 px-4 h-4/5 w-full bg-white dark:bg-gray-900 py-8 text-center py-16">
                 <div class="grid gap-6 mx-auto max-w-xl text-center lg:py-16 mb-6 sm:grid-cols-1 md:grid-cols-2">
-                    <input maxlength="15" type="text" id="phone" placeholder="Ex: (10) 98745-4321" class="sm:col-span-1 md:col-span-2 error1 inline-flex justify-center items-center text-center bg-gray-50 order border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onkeyup="handleKeyPress(event)">
+                    <input maxlength="15" type="text" id="phone" placeholder="Ex: (10) 98745-4321" class="sm:col-span-1 md:col-span-2 error1 inline-flex justify-center items-center text-center bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-4 focus:outline-none block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 focus:border-blue-500" onkeyup="handleKeyPress(event)">
                     <button onclick="openWhatsAppWeb()" type="button" class="sm:col-span-1 md:col-span-1 send-button flex flex-row gap-2 justify-center items-center text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+
                         <h1>Enviar</h1>
                         <svg class="w-6 h-6 text-white dark:text-white text-base" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 25 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
