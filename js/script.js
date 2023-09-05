@@ -48,9 +48,7 @@ function hideLoadingScreen() {
     loadingScreen.style.display = 'none';
 }
 
-function openWhatsAppWeb() {
-    var phoneNumber = document.getElementById("phone").value;
-
+function openWhatsAppWeb(phoneNumber) {
     if (phoneNumber) {
         var cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
 
@@ -102,3 +100,92 @@ phone.addEventListener("input", () => {
 
     phone.value = numeroFormatado;
 });
+
+function isValidPhoneNumber(phoneNumber) {
+    var phonePattern = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
+    return phonePattern.test(phoneNumber);
+}
+
+function savePhoneNumber() {
+    var phoneNumber = document.getElementById("phone").value;
+
+    if (isValidPhoneNumber(phoneNumber)) {
+        var savedPhoneNumbers = JSON.parse(localStorage.getItem("savedPhoneNumbers")) || [];
+        savedPhoneNumbers.push(phoneNumber);
+        localStorage.setItem("savedPhoneNumbers", JSON.stringify(savedPhoneNumbers));
+        document.getElementById("phone").value = "";
+        displaySavedPhoneNumbers(); 
+    } else {
+        document.getElementById("error-message").classList.remove("hidden");
+    }
+}
+
+function displaySavedPhoneNumbers() {
+    var savedPhoneNumbers = JSON.parse(localStorage.getItem("savedPhoneNumbers")) || [];
+    var phoneNumberList = document.getElementById("initial-recent-numbers");
+
+    phoneNumberList.innerHTML = ""; 
+
+    savedPhoneNumbers.forEach(function (phoneNumberData) {
+        var listItem = document.createElement("li");
+        listItem.classList.add("flex", "items-center", "justify-center", "w-full", "py-2", "gap-2", "border-b", "border-gray-300", "dark:border-gray-700");
+
+        var contactIcon = document.createElement("span");
+        contactIcon.classList.add("w-6", "h-6");
+
+        var phoneNumberElement = document.createElement("span");
+        phoneNumberElement.textContent = phoneNumberData;
+        phoneNumberElement.classList.add("text-gray-700", "dark:text-gray-300");
+
+        // Crie o elemento contactIcon
+        var contactIcon = document.createElement("span");
+        contactIcon.classList.add("flex", "items-center", "justify-center", "w-6", "h-6", "text-gray-800", "dark:text-white");
+
+        // Crie um elemento SVG
+        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("class", "w-5 h-5 text-gray-800 dark:text-white");
+        svg.setAttribute("aria-hidden", "true");
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("fill", "currentColor");
+        svg.setAttribute("viewBox", "0 0 14 18");
+
+        // Crie o elemento de caminho (path) dentro do SVG
+        var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", "M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z");
+
+        // Adicione o elemento de caminho ao SVG
+        svg.appendChild(path);
+
+        // Adicione o elemento SVG ao contactIcon
+        contactIcon.appendChild(svg);        
+
+        var date = document.createElement("span");
+        date.textContent = phoneNumberData.date;
+        date.classList.add("flex", "items-center", "justify-center", "ml-auto", "text-gray-500", "dark:text-gray-400"); 
+
+        var sendMessageButton = document.createElement("button");
+        sendMessageButton.textContent = "Enviar";
+        sendMessageButton.classList.add("send-button", "text-white", "bg-blue-700", "hover:bg-blue-800", "focus:ring-4", "focus:ring-blue-300", "font-medium", "rounded-lg", "text-sm", "px-5", "py-2.5", "dark:bg-blue-600", "dark:hover:bg-blue-700", "focus:outline-none", "dark:focus:ring-blue-800"); // Adicione classes do Tailwind para estilo
+        sendMessageButton.setAttribute("phone", phoneNumberData)
+
+        var sendMessageButtons = document.querySelectorAll(".send-button");
+        sendMessageButtons.forEach(button => {
+        button.addEventListener("click", function(){
+            openWhatsAppWeb(button.getAttribute("phone"))
+        })
+        });
+
+        listItem.appendChild(contactIcon);
+        listItem.appendChild(phoneNumberElement);
+        listItem.appendChild(date);
+        listItem.appendChild(sendMessageButton);
+        phoneNumberList.appendChild(listItem);
+    });
+}
+
+
+
+
+document.querySelector(".send-button").addEventListener("click", savePhoneNumber);
+
+displaySavedPhoneNumbers();
