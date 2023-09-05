@@ -49,6 +49,9 @@ function hideLoadingScreen() {
 }
 
 function openWhatsAppWeb(phoneNumber) {
+
+    var phoneNumber = document.getElementById("phone").value;
+
     if (phoneNumber) {
         var cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
 
@@ -175,12 +178,25 @@ function displaySavedPhoneNumbers() {
         sendMessageButton.classList.add("send-button", "text-white", "bg-blue-700", "hover:bg-blue-800", "focus:ring-4", "focus:ring-blue-300", "font-medium", "rounded-lg", "text-sm", "px-5", "py-2.5", "dark:bg-blue-600", "dark:hover:bg-blue-700", "focus:outline-none", "dark:focus:ring-blue-800"); // Adicione classes do Tailwind para estilo
         sendMessageButton.setAttribute("phone", phoneNumberData)
 
+
+
         var sendMessageButtons = document.querySelectorAll(".send-button");
         sendMessageButtons.forEach(button => {
         button.addEventListener("click", function(){
             openWhatsAppWeb(button.getAttribute("phone"))
         })
-        });
+        }
+
+
+            /*
+            function (button) {
+            button.addEventListener(
+
+                "click", function () {
+                var phoneNumber = this.getAttribute("data-phone-number");
+                openWhatsAppWeb(phoneNumber);
+            });
+        }*/);
 
         listItem.appendChild(contactIcon);
         listItem.appendChild(phoneNumberElement);
