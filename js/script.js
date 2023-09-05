@@ -131,7 +131,7 @@ function displaySavedPhoneNumbers() {
 
     var listTitle = document.createElement("h2");
     listTitle.textContent = "Números Salvos";
-    listTitle.classList.add("mb-5", "text-2xl", "font-extrabold", "leading-none", "tracking-tight", "text-gray-900", "md:text-5xl", "lg:text-2xl", "dark:text-white");
+    listTitle.classList.add("mb-5", "text-1x1", "font-bold", "leading-none", "tracking-tight", "text-gray-900", "md:text-5xl", "lg:text-2xl", "dark:text-white");
     phoneNumberList.appendChild(listTitle);
 
 
