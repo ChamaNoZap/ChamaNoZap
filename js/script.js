@@ -51,7 +51,7 @@ function hideLoadingScreen() {
 function openWhatsAppWeb(phoneNumber) {
 
     var phoneNumber = document.getElementById("phone").value;
-
+    
     if (phoneNumber) {
         var cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
 
@@ -71,6 +71,7 @@ function openWhatsAppWeb(phoneNumber) {
         document.getElementById("error-message").classList.remove("hidden");
     }
 }
+
 
 function handleKeyPress(event) {
     if (event.key === "Enter") {
@@ -109,7 +110,10 @@ function isValidPhoneNumber(phoneNumber) {
     return phonePattern.test(phoneNumber);
 }
 
+
+/*
 function savePhoneNumber() {
+    
     var phoneNumber = document.getElementById("phone").value;
 
     if (isValidPhoneNumber(phoneNumber)) {
@@ -122,6 +126,8 @@ function savePhoneNumber() {
         document.getElementById("error-message").classList.remove("hidden");
     }
 }
+
+*/
 
 function displaySavedPhoneNumbers() {
     var savedPhoneNumbers = JSON.parse(localStorage.getItem("savedPhoneNumbers")) || [];
