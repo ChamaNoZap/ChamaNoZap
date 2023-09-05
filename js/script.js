@@ -124,9 +124,16 @@ function displaySavedPhoneNumbers() {
     var savedPhoneNumbers = JSON.parse(localStorage.getItem("savedPhoneNumbers")) || [];
     var phoneNumberList = document.getElementById("initial-recent-numbers");
 
-    phoneNumberList.innerHTML = ""; 
+    phoneNumberList.innerHTML = "";
+
+    var listTitle = document.createElement("h2");
+    listTitle.textContent = "Números Salvos";
+    listTitle.classList.add("mb-5", "text-2xl", "font-extrabold", "leading-none", "tracking-tight", "text-gray-900", "md:text-5xl", "lg:text-2xl", "dark:text-white");
+    phoneNumberList.appendChild(listTitle);
+
 
     savedPhoneNumbers.forEach(function (phoneNumberData) {
+
         var listItem = document.createElement("li");
         listItem.classList.add("flex", "items-center", "justify-center", "w-full", "py-2", "gap-2", "border-b", "border-gray-300", "dark:border-gray-700");
 
