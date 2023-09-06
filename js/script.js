@@ -62,22 +62,13 @@ function openWhatsAppWeb(phoneNumber) {
             var desktopUrl = "https://web.whatsapp.com/send?phone=" + cleanedPhoneNumber;
             window.open(desktopUrl, "_blank");
         }
-
         var formattedPhoneNumber = formatPhoneNumber(cleanedPhoneNumber);
-        saveContact(formattedPhoneNumber);
+        
     } else {
         document.getElementById("error-message").classList.remove("hidden");
     }
 }
 
-const btnEnviar = document.querySelector("#btnEnviar")
-
-btnEnviar.onclick = () => {
-    const phoneNumber = document.querySelector("#phone");
-    isValidPhoneNumber(phoneNumber.value);
-    confirm(phoneNumber.value);
-
-}
 
 
 function formatPhoneNumber(phoneNumber) {
@@ -108,8 +99,10 @@ phone.addEventListener("input", () => {
 
 function isValidPhoneNumber(phoneNumber) {
     var phonePattern = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
-    if(phonePattern.test(phoneNumber)){        
-        openWhatsAppWeb(phoneNumber);
+    if(phonePattern.test(phoneNumber)){              
+        return true;
+    }else{
+        return false;
     }
 }
 
@@ -118,15 +111,14 @@ function savePhoneNumber() {
     var phoneNumber = document.getElementById("phone").value;
 
     if (isValidPhoneNumber(phoneNumber)) {
+        openWhatsAppWeb(phoneNumber);
         var savedPhoneNumbers = JSON.parse(localStorage.getItem("savedPhoneNumbers")) || [];
 
         if(!savedPhoneNumbers.includes(phoneNumber)) {
             savedPhoneNumbers.push(phoneNumber);
-            console.log(savedPhoneNumbers);
             localStorage.setItem("savedPhoneNumbers", JSON.stringify(savedPhoneNumbers));
             document.getElementById("phone").value = "";
-            displaySavedPhoneNumbers();
-            //          
+            displaySavedPhoneNumbers();          
         }else{
             const containerErroText = document.querySelector("#error-message");            
             const erroText = document.querySelector("#erroText");
@@ -213,9 +205,11 @@ function displaySavedPhoneNumbers() {
     });
 }
 
-
-
-
-document.querySelector(".send-button").addEventListener("click", savePhoneNumber);
+const btnEnviar = document.querySelector("#btnEnviar")
+btnEnviar.onclick = () => {
+    const phoneNumber = document.querySelector("#phone");
+    //isValidPhoneNumber(phoneNumber.value);
+    savePhoneNumber();
+}
 
 displaySavedPhoneNumbers();
