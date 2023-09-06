@@ -1,0 +1,26 @@
+#error-message {
+    animation-name: mensagem;
+    animation-duration: 5s;    
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes mensagem {
+    0% {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    20% {
+        transform: translateY(0px); 
+        opacity: 100%;
+    }    
+    80% {
+        transform: translateY(0px);
+        opacity: 100%;
+    }
+
+    100% {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+}

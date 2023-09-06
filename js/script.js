@@ -57,6 +57,7 @@ function openWhatsAppWeb(phoneNumber) {
         if (isMobile) {
             var mobileUrl = "https://wa.me/" + cleanedPhoneNumber;
             window.open(mobileUrl, "_blank");
+
         } else {
             var desktopUrl = "https://web.whatsapp.com/send?phone=" + cleanedPhoneNumber;
             window.open(desktopUrl, "_blank");
@@ -73,9 +74,9 @@ const btnEnviar = document.querySelector("#btnEnviar")
 
 btnEnviar.onclick = () => {
     const phoneNumber = document.querySelector("#phone");
-    openWhatsAppWeb(phoneNumber.value)
-
+    isValidPhoneNumber(phoneNumber.value);
     confirm(phoneNumber.value);
+
 }
 
 
@@ -107,9 +108,10 @@ phone.addEventListener("input", () => {
 
 function isValidPhoneNumber(phoneNumber) {
     var phonePattern = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
-    return phonePattern.test(phoneNumber);
+    if(phonePattern.test(phoneNumber)){        
+        openWhatsAppWeb(phoneNumber);
+    }
 }
-
 
 function savePhoneNumber() {
     
@@ -117,12 +119,31 @@ function savePhoneNumber() {
 
     if (isValidPhoneNumber(phoneNumber)) {
         var savedPhoneNumbers = JSON.parse(localStorage.getItem("savedPhoneNumbers")) || [];
-        savedPhoneNumbers.push(phoneNumber);
-        localStorage.setItem("savedPhoneNumbers", JSON.stringify(savedPhoneNumbers));
-        document.getElementById("phone").value = "";
-        displaySavedPhoneNumbers(); 
+
+        if(!savedPhoneNumbers.includes(phoneNumber)) {
+            savedPhoneNumbers.push(phoneNumber);
+            console.log(savedPhoneNumbers);
+            localStorage.setItem("savedPhoneNumbers", JSON.stringify(savedPhoneNumbers));
+            document.getElementById("phone").value = "";
+            displaySavedPhoneNumbers();
+            //          
+        }else{
+            const containerErroText = document.querySelector("#error-message");            
+            const erroText = document.querySelector("#erroText");
+            erroText.innerHTML = "<span class='font-medium'>Número já existe!</span> Não foi salvo na lista."
+            containerErroText.classList.remove("hidden")
+            containerErroText.addEventListener("animationend", () => {
+                containerErroText.classList.add("hidden")
+            });        
+        }
     } else {
-        document.getElementById("error-message").classList.remove("hidden");
+        const containerErroText = document.querySelector("#error-message");
+        const erroText = document.querySelector("#erroText");
+        erroText.innerHTML = "<span class='font-medium'>Número inválido!</span> Por favor, digite um número de telefone válido."                         
+        containerErroText.classList.remove("hidden")
+        containerErroText.addEventListener("animationend", () => {
+            containerErroText.classList.add("hidden")
+        });
     }
 }
 
